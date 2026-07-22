@@ -77,6 +77,26 @@ app.post("/tasks/:id/toggle", async (req, res) => {
 
     res.redirect("/");
 });
+
+app.post("/tasks/:id/update", async (req, res) => {
+    const taskId = Number(req.params.id);
+
+    await prisma.task.update({
+        where: {
+            id: taskId
+        },
+        data: {
+            title: req.body.title,
+            description: req.body.description || null,
+            status: req.body.status,
+            dueDate: req.body.dueDate
+                ? new Date(req.body.dueDate)
+                : null
+        }
+    });
+
+    res.redirect("/");
+});
 const port = process.env.PORT || 3000;
 
 app.listen(port,()=>{
