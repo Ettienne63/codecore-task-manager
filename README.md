@@ -6,15 +6,15 @@ The application allows users to create, search, edit, update and delete tasks wh
 
 ---
 
-## Live Demo
+# 🚀 Live Demo
 
-**Live Application**
+**Application**
 
 https://codecore-task-manager.onrender.com
 
 ---
 
-## GitHub Repository
+# 📂 GitHub Repository
 
 https://github.com/Ettienne63/codecore-task-manager
 
@@ -22,14 +22,14 @@ https://github.com/Ettienne63/codecore-task-manager
 
 # Features
 
-- ✅ Create new tasks
-- ✅ View all tasks
-- ✅ Edit existing tasks
-- ✅ Delete tasks (with confirmation)
-- ✅ Toggle task status (Pending / Done)
-- ✅ Search tasks by title
-- ✅ Persistent PostgreSQL database
-- ✅ Responsive Bootstrap interface
+- Create new tasks
+- View all tasks
+- Edit existing tasks
+- Delete tasks (with confirmation)
+- Toggle task status (Pending / Done)
+- Search tasks by title
+- PostgreSQL database persistence
+- Responsive Bootstrap interface
 
 ---
 
@@ -54,31 +54,28 @@ https://github.com/Ettienne63/codecore-task-manager
 
 ---
 
-# Running the Project Locally
+# Running Locally
 
-## 1. Clone the repository
+## Prerequisites
+
+Before running the project, you'll need:
+
+- Node.js
+- npm
+- Access to a PostgreSQL database (local or hosted such as Neon)
+
+---
+
+## Clone the repository
 
 ```bash
 git clone https://github.com/Ettienne63/codecore-task-manager.git
-```
-
-Move into the project directory.
-
-```bash
 cd codecore-task-manager
 ```
 
 ---
 
-## 2. Install dependencies
-
-```bash
-npm install
-```
-
----
-
-## 3. Configure Environment Variables
+## Create a `.env` file
 
 Create a `.env` file in the project root.
 
@@ -91,7 +88,15 @@ PORT=3000
 
 ---
 
-## 4. Apply the database schema
+## Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+## Generate Prisma Client and apply the database schema
 
 ```bash
 npm run setup
@@ -99,21 +104,21 @@ npm run setup
 
 ---
 
-## 5. Start the application
+## Start the application
 
-Development
+Development:
 
 ```bash
 npm run dev
 ```
 
-Production
+Production:
 
 ```bash
 npm start
 ```
 
-The application will be available at:
+Open your browser and navigate to:
 
 ```
 http://localhost:3000
@@ -125,13 +130,13 @@ http://localhost:3000
 
 The application uses PostgreSQL together with Prisma ORM.
 
-Task Model
+## Task Model
 
 | Field | Type |
-|-------|------|
+|------|------|
 | id | Integer |
 | title | String |
-| description | String (Optional) |
+| description | Optional String |
 | status | PENDING / DONE |
 | dueDate | Date |
 | createdAt | DateTime |
@@ -141,33 +146,36 @@ Task Model
 
 # Application Workflow
 
-Create Task
-
 ```
-User submits form
-        ↓
+User submits task
+        │
+        ▼
 Express Route
-        ↓
+        │
+        ▼
 Prisma ORM
-        ↓
+        │
+        ▼
 PostgreSQL Database
-        ↓
-Redirect to homepage
-        ↓
+        │
+        ▼
+Redirect back to homepage
+        │
+        ▼
 Updated task list displayed
 ```
 
-The same flow is used for editing, deleting and updating task status.
+The same workflow is used for editing, deleting and updating task status.
 
 ---
-
-
 
 # Trade-offs
 
 Given the scope and time available for the assessment, I prioritised implementing the required CRUD functionality before introducing additional features.
 
-The application currently keeps all routes inside `server.js`. For a larger production application I would separate responsibilities into:
+The application currently keeps all routes inside `server.js`.
+
+For a larger production application I would separate responsibilities into:
 
 - Routes
 - Controllers
@@ -179,12 +187,12 @@ This would improve maintainability as the project grows.
 
 # Future Improvements
 
-With additional time I would like to add:
+With additional time I would add:
 
-- Server-side validation with user-friendly error messages
+- Server-side validation
+- Better error handling
 - Task sorting
 - Filtering by task status
-- User authentication
 
 ---
 
@@ -216,24 +224,14 @@ codecore-task-manager
 
 The project was developed incrementally using multiple commits to demonstrate the development process.
 
-Examples include:
-
-- Initial project setup
-- Task creation
-- Task listing
-- Delete functionality
-- Status toggle
-- Edit functionality
-- Search feature
-- Deployment preparation
-
 ---
 
 # Author
 
 **Ettienne Janse van Vuuren**
 
-Bachelor of Information Technology Graduate
+# Thank You
 
-GitHub:
-https://github.com/Ettienne63
+Thank you for taking the time to review my submission.
+
+I enjoyed building this project and appreciate the opportunity to demonstrate my skills. I look forward to discussing my implementation and design decisions.
