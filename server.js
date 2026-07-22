@@ -40,6 +40,18 @@ app.post("/tasks", async (req, res) => {
     res.redirect("/");
 });
 
+app.post("/tasks/:id/delete", async (req, res) => {
+    const taskId = Number(req.params.id);
+
+    await prisma.task.delete({
+        where: {
+            id: taskId
+        }
+    });
+
+    res.redirect("/");
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port,()=>{
