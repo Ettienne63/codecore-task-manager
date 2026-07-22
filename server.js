@@ -16,14 +16,24 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", async (req,res) => {
-    const tasks = await prisma.task.findMany()
+app.get("/", async (req, res) => {
+    const search = req.query.search || "";
 
-    res.render("tasks/index",{
+    const tasks = await prisma.task.findMany({
+        where: {
+            title: {
+                contains: search,
+                mode: "insensitive"
+            }
+        }
+    });
+
+    res.render("tasks/index", {
         pageTitle: "Tasks",
-        tasks
-    })
-})
+        tasks,
+        search
+    });
+});
 
 app.post("/tasks", async (req, res) => {
     await prisma.task.create({

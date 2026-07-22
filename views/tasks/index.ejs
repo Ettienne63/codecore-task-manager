@@ -16,16 +16,14 @@
 </head>
 
 <body class="bg-light">
-
     <main class="container py-5">
-
         <div class="row g-5">
-
-            <!-- Create Task Form -->
             <div class="col-lg-5">
                 <div class="card shadow-sm">
                     <div class="card-body p-4">
 
+
+                    <!-- Main Task creation from -->
                         <h1 class="h3 mb-4">Create Task</h1>
 
                         <form action="/tasks" method="POST">
@@ -100,9 +98,31 @@
                 </div>
             </div>
 
-            <!-- Task List -->
+           
             <div class="col-lg-7">
+                <h2>Current Tasks</h2>
+                <form action="/" method="GET" class="mb-4">
 
+                    <!-- Search bar to search for specific task-->
+                    <div class="input-group">
+                        <input
+                            type="search"
+                            class="form-control"
+                            name="search"
+                            placeholder="Search tasks by title"
+                            value="<%= search %>"
+                        >
+
+                        <button type="submit" class="btn btn-dark">
+                            Search
+                        </button>
+
+                        <a href="/" class="btn btn-outline-secondary">
+                            Clear
+                        </a>
+                    </div>
+                </form>
+                
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
                         <h2 class="h3 mb-1">Current Tasks</h2>
@@ -111,6 +131,8 @@
                         </p>
                     </div>
                 </div>
+
+                <!-- Form validation and database manipulation -->
 
                 <% if (tasks.length === 0) { %>
 
@@ -164,9 +186,9 @@
                                                 : "No due date" %>
                                         </p>
                                     </div>
-
                                 </div>
 
+                                <!-- Status toggle feature, change from pending to done or other way around-->
                                 <div class="d-flex flex-wrap gap-2 mt-4">
 
                                     <form
@@ -183,6 +205,7 @@
                                         </button>
                                     </form>
 
+                                    <!-- Delete button to delete any task-->
                                     <form
                                         action="/tasks/<%= task.id %>/delete"
                                         method="POST"
@@ -196,6 +219,8 @@
                                         </button>
                                     </form>
 
+                                    <!-- Edit button to change any value from a perticular task -->
+
                                     <button
                                         class="btn btn-primary"
                                         type="button"
@@ -204,6 +229,9 @@
                                         >
                                      Edit
                                     </button>
+
+                                    <!-- Update button to save the changes from a edited form-->
+
                                     <div class="collapse mt-3" id="editTask<%= task.id %>">
                                         <form action="/tasks/<%= task.id %>/update" method="POST">
 
