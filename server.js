@@ -52,6 +52,31 @@ app.post("/tasks/:id/delete", async (req, res) => {
     res.redirect("/");
 });
 
+app.post("/tasks/:id/toggle", async (req, res) => {
+    const taskId = Number(req.params.id);
+
+    const task = await prisma.task.findUnique({
+        where: {
+            id: taskId
+        }
+    });
+
+    const newStatus =
+        task.status === "PENDING"
+            ? "DONE"
+            : "PENDING";
+
+    await prisma.task.update({
+        where: {
+            id: taskId
+        },
+        data: {
+            status: newStatus
+        }
+    });
+
+    res.redirect("/");
+});
 const port = process.env.PORT || 3000;
 
 app.listen(port,()=>{

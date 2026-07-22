@@ -109,7 +109,15 @@
                      Delete
                     </button>
                 </form>
+
+            <form action="/tasks/<%= task.id %>/toggle" method="POST" class="mt-2">
+                <button type="submit" class="btn btn-success">
+                 <%= task.status === "PENDING" ? "Mark done" : "Mark pending" %>
+                </button>
+            </form>
             </div>
+
+            
         </div>
 
     <% } %>
